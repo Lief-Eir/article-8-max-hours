@@ -1,0 +1,4 @@
+# instruct git to ignore the following folders
+
+docs
+
