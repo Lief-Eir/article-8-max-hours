@@ -10,8 +10,8 @@ from pandas import read_csv
 from openpyxl import Workbook
 
 # ask for input.  It is on the user to know.  Make a README
-filein = str(input('enter input file name: '))
-fileout = str(input('enter desired output file name: '))
+filein = "docs/" + str(input('enter input file name: '))
+fileout = "docs/" + str(input('enter desired output file name: '))
 
 # Input/Output Cleaning
 if not fileout.endswith('.xlsx'):
@@ -36,20 +36,22 @@ xlrow = 2
 
 # Find the number of rows to iterate over
 for row in df.iterrows():
+    # print(rowmax, row)
     rowmax += 1
+# print("rowmax: ", rowmax)
 
 # All the logic
 while line_count < rowmax - 4:
     line_count += 1
     total = 0
     total12 = 0
-
+    # print(line_count)
     # Checking craft
-    while df.at[line_count, 'D/A'] != 134:
+    while df.at[line_count, 'D/A'] != "134":
         line_count += 1
 
     # We are verifying that the row is a full hour row for the same employee, then checking 12 hour violations
-    while df.at[line_count, 'Employee_ID'] == df.at[line_count + 1, 'Employee_ID'] and \
+    while df.at[line_count, 'Employee Id'] == df.at[line_count + 1, 'Employee Id'] and \
             df.at[line_count, 'Hours'] == 'WK':
         total += df.at[line_count, 'Qty']
         if df.at[line_count, 'Qty'] > 12:
